@@ -1,13 +1,12 @@
 //Written according to https://eips.ethereum.org/EIPS/eip-20
 //Fabian Vogelsteller <fabian@ethereum.org>, Vitalik Buterin <vitalik.buterin@ethereum.org>, "ERC-20: Token Standard," Ethereum Improvement Proposals, no. 20, November 2015. [Online serial]. Available: https://eips.ethereum.org/EIPS/eip-20.
-//Function names specified according to eip-20=>ERC20
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract MadenToken {
-    string constant _name = "Maden Token";  //name of the token
-    string constant _symbol = "MATO";       //symbol of the token
+contract DenemeToken {
+    string constant _name = "Maden Token";
+    string constant _symbol = "MATO";
     uint8 constant _decimals = 18;
     uint256 constant _totalSupply = 2000000 * 10 ** uint256(_decimals);
 
@@ -69,9 +68,9 @@ contract MadenToken {
         require(balances[_from] >= _value, "Insufficient balance");
         require(allowances[_from][msg.sender] >= _value, "Allowance exceeded");
 
-        balances[_from] -= _value;
-        balances[_to] += _value;
-        allowances[_from][msg.sender] -= _value;
+        balances[_from] = balances[_from] - _value;
+        balances[_to]= balances[_to] + _value;
+        allowances[_from][msg.sender] = allowances[_from][msg.sender] - _value;
 
         emit Transfer(_from, _to, _value);
         return true;
